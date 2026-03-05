@@ -1,0 +1,794 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Your Name | Portfolio</title>
+
+  <!-- Bootstrap 5 -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"/>
+  <!-- Bootstrap Icons -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet"/>
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet"/>
+
+  <style>
+    :root {
+      --base:      #FFFBF1;
+      --primary:   #FFF2D0;
+      --secondary: #FFB2B2;
+      --accent:    #E36A6A;
+      --dark:      #3a2a2a;
+      --muted:     #9a7e7e;
+    }
+
+    * { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'DM Sans', sans-serif;
+      background-color: var(--base);
+      color: var(--dark);
+    }
+
+    h1, h2, h3, h4 {
+      font-family: 'Playfair Display', serif;
+    }
+
+    /* ── NAVBAR ── */
+    .navbar {
+      background-color: var(--base);
+      border-bottom: 1px solid #f0e6d3;
+      padding: 1rem 0;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      backdrop-filter: blur(8px);
+    }
+    .navbar-brand {
+      font-family: 'Playfair Display', serif;
+      font-weight: 700;
+      color: var(--accent) !important;
+      font-size: 1.3rem;
+    }
+    .nav-link {
+      color: var(--dark) !important;
+      font-weight: 500;
+      font-size: 0.9rem;
+      letter-spacing: 0.03em;
+      padding: 0.4rem 1rem !important;
+      border-radius: 20px;
+      transition: all 0.25s;
+    }
+    .nav-link:hover, .nav-link.active {
+      background-color: var(--secondary);
+      color: var(--dark) !important;
+    }
+
+    /* ── HERO ── */
+    #home {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      background-color: var(--base);
+      padding: 6rem 0 4rem;
+    }
+    .hero-tag {
+      display: inline-block;
+      background-color: var(--secondary);
+      color: var(--dark);
+      font-size: 0.8rem;
+      font-weight: 500;
+      padding: 0.35rem 1rem;
+      border-radius: 20px;
+      letter-spacing: 0.05em;
+      margin-bottom: 1.2rem;
+    }
+    .hero-name {
+      font-size: clamp(2.5rem, 6vw, 4.5rem);
+      font-weight: 700;
+      line-height: 1.1;
+      margin-bottom: 1rem;
+    }
+    .hero-name span { color: var(--accent); }
+    .hero-sub {
+      font-size: 1.1rem;
+      color: var(--muted);
+      max-width: 480px;
+      line-height: 1.7;
+      margin-bottom: 2rem;
+    }
+    .btn-accent {
+      background-color: var(--accent);
+      color: #fff;
+      border: none;
+      padding: 0.7rem 1.8rem;
+      border-radius: 30px;
+      font-weight: 500;
+      font-size: 0.95rem;
+      transition: all 0.25s;
+      text-decoration: none;
+    }
+    .btn-accent:hover {
+      background-color: #c95a5a;
+      color: #fff;
+      transform: translateY(-2px);
+      box-shadow: 0 6px 20px rgba(227,106,106,0.35);
+    }
+    .btn-outline-accent {
+      background-color: transparent;
+      color: var(--accent);
+      border: 2px solid var(--accent);
+      padding: 0.65rem 1.6rem;
+      border-radius: 30px;
+      font-weight: 500;
+      font-size: 0.95rem;
+      transition: all 0.25s;
+      text-decoration: none;
+    }
+    .btn-outline-accent:hover {
+      background-color: var(--accent);
+      color: #fff;
+      transform: translateY(-2px);
+    }
+    .hero-avatar {
+      width: 320px;
+      height: 320px;
+      border-radius: 40% 60% 55% 45% / 50% 45% 55% 50%;
+      object-fit: cover;
+      border: 5px solid var(--secondary);
+      box-shadow: 0 20px 60px rgba(227,106,106,0.15);
+      animation: morphBlob 8s ease-in-out infinite;
+    }
+    @keyframes morphBlob {
+      0%,100% { border-radius: 40% 60% 55% 45% / 50% 45% 55% 50%; }
+      50%      { border-radius: 60% 40% 45% 55% / 45% 55% 45% 55%; }
+    }
+    .hero-avatar-wrap {
+      position: relative;
+      display: inline-block;
+    }
+    .hero-avatar-wrap::before {
+      content: '';
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      background-color: var(--primary);
+      border-radius: 40% 60% 55% 45% / 50% 45% 55% 50%;
+      top: 14px;
+      left: 14px;
+      z-index: -1;
+      animation: morphBlob 8s ease-in-out infinite reverse;
+    }
+
+    /* ── SECTION SHARED ── */
+    section { padding: 5rem 0; }
+    .section-label {
+      font-size: 0.78rem;
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 0.5rem;
+    }
+    .section-title {
+      font-size: clamp(1.8rem, 3.5vw, 2.5rem);
+      font-weight: 700;
+      margin-bottom: 0.5rem;
+    }
+    .section-line {
+      width: 48px;
+      height: 3px;
+      background-color: var(--secondary);
+      border-radius: 2px;
+      margin-bottom: 2.5rem;
+    }
+
+    /* ── ABOUT ── */
+    #about { background-color: var(--primary); }
+    .skill-pill {
+      display: inline-block;
+      background-color: var(--base);
+      border: 1.5px solid var(--secondary);
+      color: var(--dark);
+      font-size: 0.82rem;
+      font-weight: 500;
+      padding: 0.35rem 0.9rem;
+      border-radius: 20px;
+      margin: 0.25rem;
+      transition: all 0.2s;
+    }
+    .skill-pill:hover {
+      background-color: var(--secondary);
+      border-color: var(--secondary);
+    }
+    .about-stat {
+      text-align: center;
+      padding: 1.2rem;
+      background: var(--base);
+      border-radius: 16px;
+      box-shadow: 0 2px 12px rgba(0,0,0,0.04);
+    }
+    .about-stat .num {
+      font-family: 'Playfair Display', serif;
+      font-size: 2rem;
+      font-weight: 700;
+      color: var(--accent);
+    }
+    .about-stat .label { font-size: 0.82rem; color: var(--muted); }
+
+    /* ── EDUCATION ── */
+    #education { background-color: var(--base); }
+    .edu-card {
+      background: var(--primary);
+      border-radius: 20px;
+      padding: 1.8rem 2rem;
+      border-left: 4px solid var(--accent);
+      transition: transform 0.25s, box-shadow 0.25s;
+    }
+    .edu-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 12px 40px rgba(227,106,106,0.12);
+    }
+    .edu-year {
+      font-size: 0.8rem;
+      font-weight: 600;
+      color: var(--accent);
+      letter-spacing: 0.08em;
+      margin-bottom: 0.4rem;
+    }
+    .edu-school { font-size: 1.15rem; font-weight: 700; margin-bottom: 0.2rem; }
+    .edu-major { font-size: 0.9rem; color: var(--muted); }
+
+    /* ── EXPERIENCE ── */
+    #experience { background-color: var(--primary); }
+    .exp-item {
+      display: flex;
+      gap: 1.5rem;
+      margin-bottom: 2rem;
+    }
+    .exp-dot-wrap {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      flex-shrink: 0;
+    }
+    .exp-dot {
+      width: 14px;
+      height: 14px;
+      border-radius: 50%;
+      background-color: var(--accent);
+      border: 3px solid var(--base);
+      box-shadow: 0 0 0 2px var(--accent);
+      margin-top: 4px;
+      flex-shrink: 0;
+    }
+    .exp-line {
+      width: 2px;
+      flex: 1;
+      background-color: var(--secondary);
+      margin-top: 6px;
+    }
+    .exp-content {
+      background: var(--base);
+      border-radius: 16px;
+      padding: 1.4rem 1.6rem;
+      flex: 1;
+      box-shadow: 0 2px 12px rgba(0,0,0,0.04);
+      transition: transform 0.25s;
+    }
+    .exp-content:hover { transform: translateX(4px); }
+    .exp-period {
+      font-size: 0.78rem;
+      font-weight: 600;
+      color: var(--accent);
+      letter-spacing: 0.08em;
+      margin-bottom: 0.3rem;
+    }
+    .exp-role { font-size: 1rem; font-weight: 700; margin-bottom: 0.2rem; }
+    .exp-org { font-size: 0.88rem; color: var(--muted); margin-bottom: 0.5rem; }
+    .exp-desc { font-size: 0.88rem; line-height: 1.6; color: #6b5050; }
+
+    /* ── PROJECTS ── */
+    #projects { background-color: var(--base); }
+    .project-card {
+      background: var(--primary);
+      border-radius: 20px;
+      padding: 2rem;
+      height: 100%;
+      transition: transform 0.25s, box-shadow 0.25s;
+      position: relative;
+      overflow: hidden;
+    }
+    .project-card::before {
+      content: '';
+      position: absolute;
+      top: -30px;
+      right: -30px;
+      width: 100px;
+      height: 100px;
+      background-color: var(--secondary);
+      border-radius: 50%;
+      opacity: 0.4;
+    }
+    .project-card:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 16px 50px rgba(227,106,106,0.14);
+    }
+    .project-icon {
+      font-size: 1.8rem;
+      margin-bottom: 1rem;
+    }
+    .project-title { font-size: 1.1rem; font-weight: 700; margin-bottom: 0.5rem; }
+    .project-desc { font-size: 0.88rem; color: #6b5050; line-height: 1.65; margin-bottom: 1.2rem; }
+    .project-tag {
+      display: inline-block;
+      background-color: var(--secondary);
+      color: var(--dark);
+      font-size: 0.75rem;
+      font-weight: 600;
+      padding: 0.2rem 0.7rem;
+      border-radius: 12px;
+      margin: 0.15rem;
+    }
+    .project-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      font-size: 0.85rem;
+      font-weight: 600;
+      color: var(--accent);
+      text-decoration: none;
+      margin-top: 1rem;
+      transition: gap 0.2s;
+    }
+    .project-link:hover { gap: 0.7rem; color: var(--accent); }
+
+    /* ── CONTACT ── */
+    #contact { background-color: var(--primary); }
+    .contact-card {
+      background: var(--base);
+      border-radius: 24px;
+      padding: 3rem;
+      box-shadow: 0 8px 40px rgba(0,0,0,0.06);
+    }
+    .contact-item {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      padding: 1rem 1.2rem;
+      background: var(--primary);
+      border-radius: 14px;
+      margin-bottom: 1rem;
+      text-decoration: none;
+      color: var(--dark);
+      transition: all 0.25s;
+    }
+    .contact-item:hover {
+      background: var(--secondary);
+      transform: translateX(5px);
+      color: var(--dark);
+    }
+    .contact-icon {
+      width: 42px;
+      height: 42px;
+      border-radius: 12px;
+      background-color: var(--accent);
+      color: #fff;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.1rem;
+      flex-shrink: 0;
+    }
+    .contact-label { font-size: 0.75rem; color: var(--muted); margin-bottom: 0.1rem; }
+    .contact-value { font-size: 0.9rem; font-weight: 600; }
+
+    /* ── FOOTER ── */
+    footer {
+      background-color: var(--dark);
+      color: #c9b5b5;
+      text-align: center;
+      padding: 1.8rem 0;
+      font-size: 0.85rem;
+    }
+    footer a { color: var(--secondary); text-decoration: none; }
+    footer a:hover { color: var(--accent); }
+
+    /* ── FADE IN ANIMATION ── */
+    .fade-up {
+      opacity: 0;
+      transform: translateY(30px);
+      transition: opacity 0.6s ease, transform 0.6s ease;
+    }
+    .fade-up.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 767px) {
+      .hero-avatar { width: 220px; height: 220px; }
+      .contact-card { padding: 2rem 1.5rem; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ── NAVBAR ── -->
+<nav class="navbar navbar-expand-lg">
+  <div class="container">
+    <a class="navbar-brand" href="#home">Liza.Bi</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navMenu">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse justify-content-end" id="navMenu">
+      <ul class="navbar-nav gap-1">
+        <li class="nav-item"><a class="nav-link active" href="#home">Home</a></li>
+        <li class="nav-item"><a class="nav-link" href="#about">About</a></li>
+        <li class="nav-item"><a class="nav-link" href="#education">Education</a></li>
+        <li class="nav-item"><a class="nav-link" href="#experience">Experience</a></li>
+        <li class="nav-item"><a class="nav-link" href="#projects">Projects</a></li>
+        <li class="nav-item"><a class="nav-link" href="#contact">Contact</a></li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+<!-- ── HERO ── -->
+<section id="home">
+  <div class="container">
+    <div class="row align-items-center g-5">
+      <div class="col-lg-6 order-2 order-lg-1">
+        <span class="hero-tag">👋 Computer Science Student</span>
+        <h1 class="hero-name">Hi, I'm <span>Elizabeth A</span></h1>
+        <p class="hero-sub">
+          Mahasiswa Computer Science (Artificial Intelligence) di Universitas Ma Chung yang tertarik di bidang
+          Data Analyst dan teknologi. Suka eksplorasi hal-hal baru dan bikin sesuatu yang bermanfaat.
+        </p>
+        <div class="d-flex flex-wrap gap-3">
+          <a href="#projects" class="btn-accent">See My Work</a>
+          <a href="#contact" class="btn-outline-accent">Contact Me</a>
+        </div>
+      </div>
+      <div class="col-lg-6 order-1 order-lg-2 text-center">
+        <div class="hero-avatar-wrap">
+          <!-- Ganti src dengan foto kamu -->
+          <img
+            src="https://ui-avatars.com/api/?name=LZ&background=FFB2B2&color=3a2a2a&size=320&font-size=0.33&bold=true"
+            alt="Profile Photo"
+            class="hero-avatar"
+          />
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── ABOUT ── -->
+<section id="about">
+  <div class="container">
+    <div class="row g-5 align-items-center">
+      <div class="col-lg-8 fade-up">
+        <p class="section-label">Who I Am</p>
+        <h2 class="section-title">About Me</h2>
+        <div class="section-line"></div>
+        <p style="line-height:1.8; color:#6b5050; margin-bottom:1.5rem;">
+          Halo, saya <strong>Elizabeth Anndini Shayna Putri (Liza)</strong>, mahasiswa Program Studi Computer Science (Artificial Intelligence) di Universitas Ma Chung. 
+          Saya memiliki ketertarikan pada bidang Computer Science, khususnya Data Analyst dan pengolahan data.
+        </p>
+        <p style="line-height:1.8; color:#6b5050; margin-bottom:1.8rem;">
+          Selama masa perkuliahan, saya mempelajari berbagai konsep dasar seperti pemrograman, struktur data, serta analisis dan perancangan sistem. Saya percaya bahwa teknologi bukan hanya alat, tetapi juga solusi untuk menyelesaikan permasalahan secara efektif dan terstruktur.
+        </p>
+        <p style="line-height:1.8; color:#6b5050; margin-bottom:1.8rem;">
+          Di luar kegiatan akademik, saya aktif mengikuti dan mengembangkan kemampuan melalui project-project mata kuliah dan eksplorasi teknologi untuk meningkatkan kemampuan kualitas diri.
+        </p>
+        <div class="row g-3 mb-3">
+          <div class="col-4"><div class="about-stat"><div class="num">3+</div><div class="label">Projects</div></div></div>
+          <div class="col-4"><div class="about-stat"><div class="num">10+</div><div class="label">Activity Program</div></div></div>
+          <div class="col-4"><div class="about-stat"><div class="num">2</div><div class="label">Years in College</div></div></div>
+        </div>
+      </div>
+      <div class="col-lg-4 fade-up">
+        <p class="section-label">What I Know</p>
+        <h3 class="section-title" style="font-size:1.6rem;">Skills</h3>
+        <div class="section-line"></div>
+        <div>
+          <!-- Ganti / tambah skill sesuai kamu -->
+          <span class="skill-pill">Python</span>
+          <span class="skill-pill">Java</span>
+          <span class="skill-pill">HTML</span>
+          <span class="skill-pill">CSS</span>
+          <span class="skill-pill">JavaScript</span>
+          <span class="skill-pill">Bootstrap</span>
+          <span class="skill-pill">MySQL</span>
+          <span class="skill-pill">Canva</span>
+          <span class="skill-pill">CapCut</span>
+          <span class="skill-pill">Android Studio</span>
+          <span class="skill-pill">Critical Thingking</span>
+          <span class="skill-pill">Problem Solving</span>
+          <span class="skill-pill">Team Work</span>
+          <span class="skill-pill">Sympathy & Care</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── EDUCATION ── -->
+<section id="education">
+  <div class="container">
+    <div class="text-center mb-5 fade-up">
+      <p class="section-label">Where I Learned</p>
+      <h2 class="section-title">Education</h2>
+      <div class="section-line mx-auto"></div>
+    </div>
+    <div class="row g-4 justify-content-center">
+      <!-- Ganti dengan data pendidikan kamu -->
+      <div class="col-md-6 fade-up">
+        <div class="edu-card">
+          <div class="edu-year">2023 – PRESENT</div>
+          <div class="edu-school">Universitas Ma Chung</div>
+          <div class="edu-major">S1 Teknik Informatika (Computer Science)</div>
+          <p style="font-size:0.86rem; color:#6b5050; margin-top:0.8rem; margin-bottom:0;">
+            Belajar dasar-dasar ilmu komputer, pengembangan web, analisis data, basis data, dan pemrograman berorientasi objek.
+          </p>
+        </div>
+      </div>
+      <div class="col-md-6 fade-up">
+        <div class="edu-card">
+          <div class="edu-year">2020 – 2023</div>
+          <div class="edu-school">SMA Negeri 8 Malang</div>
+          <div class="edu-major">Jurusan IPA</div>
+          <p style="font-size:0.86rem; color:#6b5050; margin-top:0.8rem; margin-bottom:0;">
+            Menempuh pendidikan di jurusan IPA dengan fokus pada mata pelajaran Matematika, Fisika, Kimia, dan Biologi.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── EXPERIENCE ── -->
+<section id="experience">
+  <div class="container">
+    <div class="text-center mb-5 fade-up">
+      <p class="section-label">What I've Done</p>
+      <h2 class="section-title">Experience</h2>
+      <div class="section-line mx-auto"></div>
+    </div>
+    <div class="row justify-content-center">
+      <div class="col-lg-8">
+
+        <!-- Experience item 1 -->
+        <div class="exp-item fade-up">
+          <div class="exp-dot-wrap">
+            <div class="exp-dot"></div>
+            <div class="exp-line"></div>
+          </div>
+          <div class="exp-content">
+            <div class="exp-period">2023 – PRESENT</div>
+            <div class="exp-role">Komisi Anggaran (Anggota)</div>
+            <div class="exp-org">Badan Perwakilan Mahasiswa Fakultas Teknologi dan Desain (BPM FTD)</div>
+            <div class="exp-desc">
+              Sebagai Anggota Komisi Anggaran BPMFTD, saya berperan dalam konsultasi dan evaluasi anggaran program kerja, melakukan pengecekan berkas pengajuan dana, serta memastikan kesesuaian budgeting dengan kebutuhan kegiatan secara sistematis dan bertanggung jawab.
+            </div>
+          </div>
+        </div>
+
+        <!-- Experience item 2 -->
+        <div class="exp-item fade-up">
+          <div class="exp-dot-wrap">
+            <div class="exp-dot"></div>
+            <div class="exp-line"></div>
+          </div>
+          <div class="exp-content">
+            <div class="exp-period">2025-2026</div>
+            <div class="exp-role">Divisi PubDekDok (Koordinator)</div>
+            <div class="exp-org">Ma Chung Festival (MCF) 2025</div>
+            <div class="exp-desc">
+              Sebagai Koordinator PubDekDok pada Ma Chung Festival 2025, saya bertanggung jawab mengoordinasikan kebutuhan publikasi, dokumentasi, dekorasi, serta desain grafis selama rangkaian acara. Saya mengatur pembagian tugas tim secara terstruktur untuk memastikan dokumentasi berjalan optimal, pengelolaan media sosial konsisten, serta konsep visual dan dekorasi terlaksana dengan menarik dan sesuai perencanaan.
+            </div>
+          </div>
+        </div>
+
+        <!-- Experience item 3 -->
+        <div class="exp-item fade-up">
+          <div class="exp-dot-wrap">
+            <div class="exp-dot"></div>
+            <div class="exp-line"></div>
+          </div>
+          <div class="exp-content">
+            <div class="exp-period">2023</div>
+            <div class="exp-role">Divisi PubDekDok (Anggota)</div>
+            <div class="exp-org">Mafest 2025</div>
+            <div class="exp-desc">
+               Sebagai Anggota PubDekDok Mafest 2025, saya dipercaya menangani dokumentasi dan publikasi media sosial Mafest selama rangkaian acara berlangsung. Saya terkhusus melakukan proses editing untuk kebutuhan publikasi dan mendokumentasikan penampilan seluruh Band mulai Opening hingga penampilan puncak oleh guest star, HIVI!.
+               Saya juga bertanggung jawab atas live report, pengelolaan Instagram Story, Reels Instagram, repost Story pengunjung/peserta, dan administrasi Direct Message akun resmi selama acara berlangsung hingga selesai.
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── PROJECTS ── -->
+<section id="projects">
+  <div class="container">
+    <div class="text-center mb-5 fade-up">
+      <p class="section-label">What I've Built</p>
+      <h2 class="section-title">Projects</h2>
+      <div class="section-line mx-auto"></div>
+    </div>
+    <div class="row g-4">
+
+      <!-- Project 1 -->
+      <div class="col-md-6 col-lg-4 fade-up">
+        <div class="project-card">
+          <div class="project-icon">🌐</div>
+          <div class="project-title">Android Movie Database "MovieKuy"</div>
+          <div class="project-desc">
+            Mengembangkan aplikasi mobile berbasis Android untuk pengelolaan katalog film dengan integrasi REST API sebagai sumber data eksternal. Proses pengembangan meliputi pengambilan data (extract), transformasi data JSON ke dalam model aplikasi, serta penyimpanan lokal menggunakan SQLite untuk mendukung caching dan fitur CRUD pada daftar film favorit pengguna.
+          </div>
+          <div>
+            <span class="project-tag">Java</span>
+            <span class="project-tag">Android Studio</span>
+            <span class="project-tag">Rest API</span>
+            <span class="project-tag">SQLite</span>
+          </div>
+          <a href="https://drive.google.com/file/d/1uVdaA3Al675FVXRI7La6xy_zDYqpLPst/view?usp=sharing" class="project-link">View Project <i class="bi bi-arrow-right"></i></a>
+        </div>
+      </div>
+
+      <!-- Project 2 -->
+      <div class="col-md-6 col-lg-4 fade-up">
+        <div class="project-card">
+          <div class="project-icon">🛠️</div>
+          <div class="project-title">Real-Time Sign Language Detection System</div>
+          <div class="project-desc">
+            Mengembangkan sistem deteksi bahasa isyarat secara real-time menggunakan Python, OpenCV, dan MediaPipe untuk menerjemahkan huruf serta angka ASL. Proses pengembangan meliputi pembersihan dan normalisasi data citra, ekstraksi fitur berbasis landmarks menjadi vektor numerik, serta pelatihan model klasifikasi menggunakan algoritma SVM dan Random Forest untuk menghasilkan prediksi yang akurat dan responsif.
+          </div>
+          <div>
+            <span class="project-tag">Python</span>
+            <span class="project-tag">OpenCV</span>
+            <span class="project-tag">MediaPipe</span>
+            <span class="project-tag">Scikit-Learn</span>
+          </div>
+          <a href="https://drive.google.com/file/d/1VXdUPGmIX4AJzQVmP1JPliZwO4_sdCpM/view?usp=sharing" class="project-link">View Project <i class="bi bi-arrow-right"></i></a>
+        </div>
+      </div>
+
+      <!-- Project 3 -->
+      <div class="col-md-6 col-lg-4 fade-up">
+        <div class="project-card">
+          <div class="project-icon">💡</div>
+          <div class="project-title">Perbandingan Strategi Implementasi Model MobileNetV2 untuk Pengenalan Jenis Sampah Otomatis dari Citra Digital</div>
+          <div class="project-desc">
+            Melakukan penelitian dan pengembangan model Deep Learning untuk tugas klasifikasi citra menggunakan arsitektur Convolutional Neural Network (CNN). Proyek ini mencakup tahap persiapan dataset, preprocessing data, perancangan arsitektur model, proses training dan evaluasi performa model menggunakan metrik akurasi, serta analisis hasil untuk mengukur efektivitas model dalam menyelesaikan permasalahan klasifikasi.
+          </div>
+          <div>
+            <span class="project-tag">MobileNetV2</span>
+            <span class="project-tag">Data Augmentation & Class Balancing</span>
+            <span class="project-tag">Model Evaluation</span>
+            <span class="project-tag">CNN</span>
+            <span class="project-tag">Tensor Flow</span>
+          </div>
+          <a href="https://drive.google.com/file/d/1FbIlhoAh7A3aI9kJkicj-pUodWb4jc-M/view?usp=sharing" class="project-link">View Project <i class="bi bi-arrow-right"></i></a>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ── CONTACT ── -->
+<section id="contact">
+  <div class="container">
+    <div class="text-center mb-5 fade-up">
+      <p class="section-label">Let's Connect</p>
+      <h2 class="section-title">Contact</h2>
+      <div class="section-line mx-auto"></div>
+    </div>
+    <div class="row justify-content-center">
+      <div class="col-lg-8 fade-up">
+        <div class="contact-card">
+          <p style="color:#6b5050; margin-bottom:2rem; line-height:1.0;">
+            Mau ngobrol, kolaborasi, atau punya pertanyaan? 
+          </p>
+          <p style="color:#6b5050; margin-bottom:2rem; line-height:1.7;">
+            Feel free to reach out yaa!
+            Saya terbuka untuk diskusi project, magang, atau sekadar say hi. 😊
+          </p>
+
+          <!-- Email -->
+          <a href="mailto:liza.lectuniv@gmail.com" class="contact-item">
+            <div class="contact-icon"><i class="bi bi-envelope-fill"></i></div>
+            <div>
+              <div class="contact-label">Email</div>
+              <div class="contact-value">liza.lectuniv@gmail.com</div>
+            </div>
+          </a>
+
+          <!-- LinkedIn -->
+          <a href="https://www.linkedin.com/in/elizabeth-anndini-shayna-putri-4a2184343/" target="_blank" class="contact-item">
+            <div class="contact-icon"><i class="bi bi-linkedin"></i></div>
+            <div>
+              <div class="contact-label">LinkedIn</div>
+              <div class="contact-value">linkedin.com/in/Elizabeth_A</div>
+            </div>
+          </a>
+
+          <!-- GitHub -->
+          <a href="https://github.com/lizaheree" target="_blank" class="contact-item">
+            <div class="contact-icon"><i class="bi bi-github"></i></div>
+            <div>
+              <div class="contact-label">GitHub</div>
+              <div class="contact-value">github.com/lizaheree</div>
+            </div>
+          </a>
+
+          <!-- Universitas Ma Chung -->
+          <a href="https://machung.ac.id/" target="_blank" class="contact-item">
+            <div class="contact-icon"><i class="bi bi-building"></i></div>
+            <div>
+              <div class="contact-label">University</div>
+              <div class="contact-value">Universitas Ma Chung</div>
+            </div>
+          </a>
+
+          <!-- Project Manager -->
+          <a href="https://lockey-irawan.github.io/" target="_blank" class="contact-item">
+            <div class="contact-icon"><i class="bi bi-kanban-fill"></i></div>
+            <div>
+              <div class="contact-label">Project Manager</div>
+              <div class="contact-value">lockey-irawan.github.io</div>
+            </div>
+          </a>
+
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── FOOTER ── -->
+<footer>
+  <p class="mb-0">
+    © 2025 <strong style="color:#FFB2B2;">Elizabeth A</strong> · Made with ❤️ ·
+    <a href="https://machung.ac.id/" target="_blank">Universitas Ma Chung</a>
+  </p>
+</footer>
+
+<!-- Bootstrap JS -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+
+<script>
+  // ── Scroll fade-in ──
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach((e, i) => {
+      if (e.isIntersecting) {
+        setTimeout(() => e.target.classList.add('visible'), i * 80);
+        observer.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.12 });
+
+  document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
+
+  // ── Active nav on scroll ──
+  const sections = document.querySelectorAll('section[id]');
+  const navLinks = document.querySelectorAll('.nav-link');
+
+  window.addEventListener('scroll', () => {
+    let current = '';
+    sections.forEach(s => {
+      if (window.scrollY >= s.offsetTop - 100) current = s.getAttribute('id');
+    });
+    navLinks.forEach(l => {
+      l.classList.toggle('active', l.getAttribute('href') === '#' + current);
+    });
+  });
+</script>
+</body>
+</html>
